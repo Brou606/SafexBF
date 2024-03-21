@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Générez rapidement et facilement des identifiants uniques universellement uniques (UUID) individuels ou en vrac."/>
+  <title>Outil de génération d'UUID en ligne</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .jumbotron {
+      background: linear-gradient(to right, #31363F, #5F5D9C);
+      color: #fff;
+      padding: 50px 0;
+    }
+    .uuid {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    #copy-button {
+      margin-top: 10px;
+      font-size: 18px;
+      padding: 10px 30px;
+    }
+    #copy-button img {
+      max-width: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    #copy-button-text {
+      vertical-align: middle;
+    }
+    .refresh a {
+      color: #000;
+    }
+    .card {
+      margin-top: 20px;
+    }
+    .card-header {
+      background-color: #000;
+      color: #fff;
+    }
+    .btn-generate-uuid {
+      background-color: #000;
+      color: #fff;
+      border: none;
+    }
+    .version-bulk-form {
+      margin-top: 20px;
+    }
+    #amount1-btn {
+      background-color: #000;
+      border-color: #000;
+    }
+    #amount1-file {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div>
+            <h1 class="display-4">Générateur d'UUID en ligne</h1>
+            <p class="lead">Générez rapidement et facilement des identifiants uniques universellement uniques (UUID) individuels ou en vrac.</p>
+            <h2 class="uuid" id="generated-uuid">11abef7a-e6e3-11ee-bd3d-0242ac120002</h2>
+            <button id="copy-button" class="btn btn-primary" title="Copier l'UUID dans le presse-papiers.">
+                <span id="copy-button-text">Copier</span>
+            </button>
+            <p class="refresh"><a href="">Actualisez</a> la page pour en générer un autre.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <div class="row mb-3 justify-content-center align-items-center">
+      <div class="col-md-6 mt-4">
+        <div class="card">
+          <h3 class="card-header text-center">Générateur d'UUID &  Code QR</h3>
+          <div class="card-body">
+            <h4 class="pt-2 text-center">Génération d'UUID et code QR en vrac</h4>
+            <div class="version-bulk-form indented">
+              <form action="/" accept-charset="UTF-8" data-remote="true" method="POST">
+                <div class="form-inline">
+                  <label class="col-form-label col-auto pl-0 pr-1" for="num_qr">Combien?</label>
+                  <div class="input-group col">
+                    <input type="number" id="num_qr" name="num_qr" size="5" min="1" max="500" placeholder="Max 500" class="form-control text-right" />
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="submit" id="amount1-btn">Générer</button>
+                    </div>
+                    <input type="hidden" name="authenticity_token" id="authenticity_token" value="f+1CJYU24SkvZJIGzDGTSUFuzHsYRc6x5qrmD1FW/vhQR7nd3LGjk9nq2z3bV+EHXJpL9pE/7iGea5lgNlYLjQ==" autocomplete="off" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script>
+  document.getElementById('copy-button').addEventListener('click', function() {
+    var uuidText = document.getElementById('generated-uuid').innerText;
+    navigator.clipboard.writeText(uuidText).then(function() {
+      document.getElementById('copy-button-text').innerText = 'Copié!';
+      setTimeout(function() {
+        document.getElementById('copy-button-text').innerText = 'Copier';
+      }, 1000);
+    }, function(err) {
+      console.error('Impossible de copier le texte : ', err);
+    });
+  });
+</script>
+
+</body>
+</html>
